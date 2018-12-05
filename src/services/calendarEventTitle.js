@@ -33,6 +33,10 @@ angular
     function dayViewTooltip(event) {
       return event.title;
     }
+    //THis is a custom function to return the cusom template to be shown. Else return title.
+    function dayViewPopOver(event) {
+      return event.popOverTemplate ? event.popOverTemplate : event.title;
+    }
 
     return {
       yearView: yearView,
@@ -41,7 +45,8 @@ angular
       weekView: weekView,
       weekViewTooltip: weekViewTooltip,
       dayView: dayView,
-      dayViewTooltip: dayViewTooltip
+      dayViewTooltip: dayViewTooltip,
+      dayViewPopOver: dayViewPopOver
     };
 
   });

@@ -26,6 +26,7 @@ angular
         endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
         draggable: true,
         resizable: true,
+        popOverTemplate:'<div>Hello PopOver!!!</div>',
         actions: actions
       }, {
         title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
