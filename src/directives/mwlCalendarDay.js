@@ -22,7 +22,17 @@ angular
         vm.dayViewSplit,
         vm.dayViewSegmentSize
       );
-
+      var visitedEventIdsList = [];
+      for (var i = 0; i < vm.events.length; i++) {
+        var event = vm.events[i];
+        if (event.hasOwnProperty('calendarEventId')) {
+          if (visitedEventIdsList.indexOf(event.calendarEventId) > -1) {
+            vm.events.splice(i, 1);
+          } else {
+            visitedEventIdsList.push(event.calendarEventId);
+          }
+        }
+      }
       var view = calendarHelper.getDayView(
         vm.events,
         vm.viewDate,

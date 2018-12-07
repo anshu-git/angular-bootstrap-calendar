@@ -67,7 +67,7 @@
       on-resize="vm.eventResized(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))"
       on-resize-end="vm.eventResizeComplete(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))"
       uib-popover-html="vm.calendarEventTitle.dayViewPopOver(dayEvent.event) | calendarTrustAsHtml"
-      popover-append-to-body="true" popover-trigger="'mouseenter'">
+      popover-append-to-body="true" popover-trigger="'mouseenter'" popover-placement="right">
 
       <span class="cal-hours">
         <span ng-show="dayEvent.top == 0"><span ng-bind="(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'day':true"></span>, </span>

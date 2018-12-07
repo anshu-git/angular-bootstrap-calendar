@@ -12,7 +12,8 @@ angular
         type: 'warning',
         color: calendarConfig.colorTypes.warning,
         startsAt: moment().startOf('month').toDate(),
-        draggable: true
+        draggable: true,
+        resizable: true
       },
       {
         title: 'Event 2',
