@@ -55,7 +55,7 @@ angular
 
       }
 
-      return {start: eventStart, end: eventEnd};
+      return { start: eventStart, end: eventEnd };
 
     }
 
@@ -64,7 +64,7 @@ angular
       periodStart = moment(periodStart);
       periodEnd = moment(periodEnd);
 
-      var eventPeriod = getRecurringEventPeriod({start: event.startsAt, end: event.endsAt || event.startsAt}, event.recursOn, periodStart);
+      var eventPeriod = getRecurringEventPeriod({ start: event.startsAt, end: event.endsAt || event.startsAt }, event.recursOn, periodStart);
       var eventStart = eventPeriod.start;
       var eventEnd = eventPeriod.end;
 
@@ -96,14 +96,14 @@ angular
 
     function getWeekDayNames(excluded) {
       var weekdays = [0, 1, 2, 3, 4, 5, 6]
-      .filter(function(wd) {
-        return !(excluded || []).some(function(ex) {
-          return ex === wd;
+        .filter(function(wd) {
+          return !(excluded || []).some(function(ex) {
+            return ex === wd;
+          });
+        })
+        .map(function(i) {
+          return formatDate(moment().weekday(i), calendarConfig.dateFormats.weekDay);
         });
-      })
-      .map(function(i) {
-        return formatDate(moment().weekday(i), calendarConfig.dateFormats.weekDay);
-      });
 
       return weekdays;
     }
@@ -126,7 +126,7 @@ angular
           badgeTotal: getBadgeTotal(periodEvents)
         };
 
-        cellModifier({calendarCell: cell});
+        cellModifier({ calendarCell: cell });
         view.push(cell);
         month.add(1, 'month');
         count++;
@@ -169,7 +169,7 @@ angular
         if (!calendarConfig.displayAllMonthEvents && !day.inMonth) {
           day.events = [];
         }
-        cellModifier({calendarCell: day});
+        cellModifier({ calendarCell: day });
         return day;
       });
 
@@ -234,7 +234,7 @@ angular
 
       });
 
-      return {days: days, eventRows: eventRows};
+      return { days: days, eventRows: eventRows };
 
     }
 
@@ -264,12 +264,24 @@ angular
         eventWidth: dayViewEventWidth ? +dayViewEventWidth : 150,
         segmentHeight: dayViewSegmentSize || 30
       });
-
+      var visitedEventIdsList = [];
       // remove hack to work with new event API
-      events.forEach(function(event) {
+      for (var i = 0; i < events.length; i++) {
+        var event = events[i];
         delete event.start;
         delete event.end;
-      });
+        if (event.hasOwnProperty('calendarEventId')) {
+          if (visitedEventIdsList.indexOf(event.calendarEventId) > -1) {
+            events.splice(i, 1);
+          } else {
+            visitedEventIdsList.push(event.calendarEventId);
+          }
+        }
+      }
+      // events.forEach(function(event) {
+      //   delete event.start;
+      //   delete event.end;
+      // });
 
       return view;
 
