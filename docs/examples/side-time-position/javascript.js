@@ -22,6 +22,12 @@ angular
       endsAt: moment().hours(12).minutes(0).toDate(),
       actions: actions,
       color: calendarConfig.colorTypes.important
+    }, {
+      title: 'More event',
+      startsAt: moment().hours(4).minutes(0).toDate(),
+      endsAt: moment().hours(7).minutes(0).toDate(),
+      actions: actions,
+      color: calendarConfig.colorTypes.warning
     }];
 
     vm.calendarView = 'day';

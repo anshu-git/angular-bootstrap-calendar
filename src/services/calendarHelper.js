@@ -239,10 +239,10 @@ angular
     }
 
     function getDayView(events, viewDate, dayViewStart, dayViewEnd, dayViewSplit, dayViewEventWidth, dayViewSegmentSize) {
-
+      var dayPadding = 12;
       var dayStart = (dayViewStart || '00:00').split(':');
       var dayEnd = (dayViewEnd || '23:59').split(':');
-
+      dayViewEventWidth = dayViewEventWidth ? dayViewEventWidth : 150;
       var view = calendarUtils.getDayView({
         events: events.map(function(event) { // hack required to work with event API
           var eventPeriod = getRecurringEventPeriod({
@@ -264,10 +264,75 @@ angular
         eventWidth: dayViewEventWidth ? +dayViewEventWidth : 150,
         segmentHeight: dayViewSegmentSize || 30
       });
+      // WIDTHS OF THE CALENDAR PANEL AND THE EVENTS TO BE ADJUSTED HERE
+      var maxEventWidth = parseInt(dayViewEventWidth) - dayPadding;
+      var maxEventsInCascadeCount = 0;
+      var startingIndex;
+      var previousEventTop = -1, previousEventBottom = -1, currentEventTop, currentEventBottom;
+      // 1. Update view.width object (This fix is required for overflow of events issue when time is shown on side)
+      // 2. Update view.events object (if present)
+      switch (view.events.length) {
+        case 0:
+          break;
+        case 1:
+          view.width = dayViewEventWidth;
+          view.events[0].width = maxEventWidth;
+          break;
+        default:
+          view.width = dayViewEventWidth;
+          for (var i = 0; i < view.events.length; i++) {
+            var event = view.events[i];
+            currentEventTop = event.top;
+            currentEventBottom = currentEventTop + event.height;
+            //Skipping the first event
+            if (previousEventBottom >= 0 && previousEventTop >= 0) {
+              // CHECK if current Event lies in the till previous Event Range
+              // In this case total size of the events will reduce
+              if (currentEventTop >= previousEventTop && currentEventTop < previousEventBottom) {
+                maxEventsInCascadeCount = maxEventsInCascadeCount + 1;
+
+                // Update the cumulative height of the events in cascade
+                if (currentEventBottom > previousEventBottom) {
+                  previousEventBottom = currentEventBottom;
+                }
+              } else {
+                //Update width of the till previous event
+                var eventWidth = maxEventWidth / maxEventsInCascadeCount;
+                for (var j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
+                  view.events[j].width = eventWidth;
+                  view.events[j].left = j * eventWidth;
+                }
+                //RESET ALL THE COUNTER VARIABLES
+                previousEventTop = currentEventTop;
+                previousEventBottom = currentEventBottom;
+                maxEventsInCascadeCount = 1;
+                startingIndex = i;
+              }
+              //If this is the last event
+              if (i === (view.events.length - 1)) {
+                eventWidth = maxEventWidth / maxEventsInCascadeCount;
+                var k = 0;
+                for (j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
+                  view.events[j].width = eventWidth;
+                  view.events[j].left = k * eventWidth;
+                  k++;
+                }
+                maxEventsInCascadeCount = 0;
+              }
+            } else {
+              previousEventTop = currentEventTop;
+              previousEventBottom = currentEventBottom;
+              maxEventsInCascadeCount = maxEventsInCascadeCount + 1;
+              startingIndex = i;
+            }
+          }
+      }
+      //WIDTH ADJUSTMENT ENDS HERE
+
       var visitedEventIdsList = [];
       // remove hack to work with new event API
-      for (var i = 0; i < events.length; i++) {
-        var event = events[i];
+      for (i = 0; i < events.length; i++) {
+        event = events[i];
         delete event.start;
         delete event.end;
         if (event.hasOwnProperty('calendarEventId')) {
