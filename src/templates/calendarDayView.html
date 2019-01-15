@@ -28,13 +28,15 @@
 </div>
 
 <div class="cal-day-box">
-  <div class="cal-day-panel clearfix" ng-style="{height: vm.dayViewHeight + 'px', minWidth: vm.viewWidth + 'px'}">
+  <div class="cal-day-panel clearfix" ng-style="{ height: vm.dayViewHeight + 'px', minWidth: vm.viewWidth + 'px'}">
+    <!-- height: vm.dayViewHeight + 'px',  -->
 
     <mwl-calendar-hour-list
       day-view-start="vm.dayViewStart"
       day-view-end="vm.dayViewEnd"
       day-view-split="vm.dayViewSplit"
       on-timespan-click="vm.onTimespanClick"
+      on-timespan-right-clicked="vm.onTimespanRightClicked"
       on-date-range-select="vm.onDateRangeSelect"
       on-event-times-changed="vm.onEventTimesChanged"
       view-date="vm.viewDate"
@@ -48,6 +50,7 @@
       class="pull-left day-event day-highlight"
       ng-repeat="dayEvent in vm.nonAllDayEvents track by dayEvent.event.calendarEventId"
       ng-class="dayEvent.event.cssClass"
+      event-id = "{{dayEvent.event.calendarEventId}}"
       ng-style="{
         top: dayEvent.top - 1 + 'px',
         left: dayEvent.left +  vm.dayViewTimePositionOffset + 'px',
@@ -56,6 +59,8 @@
         backgroundColor: dayEvent.event.color.secondary,
         borderColor: dayEvent.event.color.primary
       }"
+      ng-click="vm.onEventClick({calendarEvent: dayEvent.event})"
+      mwl-right-click="vm.onEventRightClick({calendarEvent: dayEvent.event})"
       mwl-draggable="dayEvent.event.draggable === true"
       axis="'xy'"
       snap-grid="{y: vm.dayViewEventChunkSize || 30, x: 50}"
@@ -73,12 +78,16 @@
         <span ng-show="dayEvent.top == 0"><span ng-bind="(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'day':true"></span>, </span>
         <span ng-bind="(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'time':true"></span>
       </span>
-      <a
-        href="javascript:;"
+      <span
         class="event-item"
-        ng-click="vm.onEventClick({calendarEvent: dayEvent.event})">
-        <span ng-bind-html="vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml"></span>
-      </a>
+        mwl-right-click="vm.onEventRightClick({calendarEvent: dayEvent.event})"
+        >
+        <!--           
+          href="javascript:;"
+          ng-click="vm.onEventClick({calendarEvent: dayEvent.event})" -->
+        <span ng-bind-html="vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml"
+        event-id = "{{dayEvent.event.calendarEventId}}"></span>
+    </span>
 
       <a
         href="javascript:;"

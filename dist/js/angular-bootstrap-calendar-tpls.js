@@ -13,7 +13,7 @@
 		exports["angularBootstrapCalendarModuleName"] = factory(require("angular"), require("moment"), (function webpackLoadOptionalExternalModule() { try { return require("interactjs"); } catch(e) {} }()));
 	else
 		root["angularBootstrapCalendarModuleName"] = factory(root["angular"], root["moment"], root["interact"]);
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_71__, __WEBPACK_EXTERNAL_MODULE_69__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_72__, __WEBPACK_EXTERNAL_MODULE_70__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -990,7 +990,6 @@ function getDayViewHourGrid(_a) {
             hours.push({ segments: segments });
         }
     }
-    debugger;
     return hours;
 }
 var EventValidationErrorMessage;
@@ -1148,8 +1147,8 @@ module.exports = angular
   }]).name;
 
 requireAll(__webpack_require__(19));
-requireAll(__webpack_require__(58));
-requireAll(__webpack_require__(63));
+requireAll(__webpack_require__(59));
+requireAll(__webpack_require__(64));
 
 
 /***/ }),
@@ -1193,19 +1192,19 @@ webpackContext.id = 9;
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = "<div\r\n  class=\"cal-context\"\r\n  ng-switch=\"vm.view\"\r\n  ng-if=\"vm.templatesLoaded\">\r\n\r\n  <div class=\"alert alert-danger\" ng-switch-default>The value passed to the view attribute of the calendar is not set</div>\r\n\r\n  <div class=\"alert alert-danger\" ng-hide=\"vm.viewDate\">The value passed to view-date attribute of the calendar is not set</div>\r\n\r\n  <mwl-calendar-year\r\n    events=\"vm.events\"\r\n    view-date=\"vm.viewDate\"\r\n    on-event-click=\"vm.onEventClick\"\r\n    on-event-times-changed=\"vm.onEventTimesChanged\"\r\n    on-timespan-click=\"vm.onTimespanClick\"\r\n    cell-is-open=\"vm.cellIsOpen\"\r\n    cell-modifier=\"vm.cellModifier\"\r\n    slide-box-disabled=\"vm.slideBoxDisabled\"\r\n    custom-template-urls=\"vm.customTemplateUrls\"\r\n    template-scope=\"vm.templateScope\"\r\n    cell-auto-open-disabled=\"vm.cellAutoOpenDisabled\"\r\n    ng-switch-when=\"year\">\r\n  </mwl-calendar-year>\r\n\r\n  <mwl-calendar-month\r\n    events=\"vm.events\"\r\n    view-date=\"vm.viewDate\"\r\n    excluded-days=\"vm.excludedDays\"\r\n    on-event-click=\"vm.onEventClick\"\r\n    on-event-times-changed=\"vm.onEventTimesChanged\"\r\n    on-timespan-click=\"vm.onTimespanClick\"\r\n    on-date-range-select=\"vm.onDateRangeSelect\"\r\n    cell-is-open=\"vm.cellIsOpen\"\r\n    cell-modifier=\"vm.cellModifier\"\r\n    slide-box-disabled=\"vm.slideBoxDisabled\"\r\n    custom-template-urls=\"vm.customTemplateUrls\"\r\n    template-scope=\"vm.templateScope\"\r\n    cell-auto-open-disabled=\"vm.cellAutoOpenDisabled\"\r\n    draggable-auto-scroll=\"vm.draggableAutoScroll\"\r\n    ng-switch-when=\"month\">\r\n  </mwl-calendar-month>\r\n\r\n  <mwl-calendar-week\r\n    events=\"vm.events\"\r\n    view-date=\"vm.viewDate\"\r\n    excluded-days=\"vm.excludedDays\"\r\n    on-event-click=\"vm.onEventClick\"\r\n    on-event-times-changed=\"vm.onEventTimesChanged\"\r\n    day-view-start=\"vm.dayViewStart\"\r\n    day-view-end=\"vm.dayViewEnd\"\r\n    day-view-split=\"vm.dayViewSplit\"\r\n    day-view-event-chunk-size=\"vm.dayViewEventChunkSize\"\r\n    on-timespan-click=\"vm.onTimespanClick\"\r\n    on-date-range-select=\"vm.onDateRangeSelect\"\r\n    custom-template-urls=\"vm.customTemplateUrls\"\r\n    cell-modifier=\"vm.cellModifier\"\r\n    template-scope=\"vm.templateScope\"\r\n    draggable-auto-scroll=\"vm.draggableAutoScroll\"\r\n    ng-switch-when=\"week\">\r\n  </mwl-calendar-week>\r\n\r\n  <mwl-calendar-day\r\n    events=\"vm.events\"\r\n    view-date=\"vm.viewDate\"\r\n    on-event-click=\"vm.onEventClick\"\r\n    on-event-times-changed=\"vm.onEventTimesChanged\"\r\n    on-timespan-click=\"vm.onTimespanClick\"\r\n    on-date-range-select=\"vm.onDateRangeSelect\"\r\n    day-view-start=\"vm.dayViewStart\"\r\n    day-view-end=\"vm.dayViewEnd\"\r\n    day-view-split=\"vm.dayViewSplit\"\r\n    day-view-event-chunk-size=\"vm.dayViewEventChunkSize\"\r\n    day-view-segment-size=\"vm.dayViewSegmentSize\"\r\n    day-view-event-width=\"vm.dayViewEventWidth\"\r\n    custom-template-urls=\"vm.customTemplateUrls\"\r\n    cell-modifier=\"vm.cellModifier\"\r\n    template-scope=\"vm.templateScope\"\r\n    day-view-time-position=\"vm.dayViewTimePosition || 'default'\"\r\n    draggable-auto-scroll=\"vm.draggableAutoScroll\"\r\n    ng-class=\"{\r\n      'time-on-side' : vm.dayViewTimePosition === 'side',\r\n      'time-hidden' : vm.dayViewTimePosition === 'hidden'\r\n    }\"\r\n    ng-switch-when=\"day\">\r\n  </mwl-calendar-day>\r\n</div>\r\n";
+module.exports = "<div\r\n  class=\"cal-context\"\r\n  ng-switch=\"vm.view\"\r\n  ng-if=\"vm.templatesLoaded\">\r\n\r\n  <div class=\"alert alert-danger\" ng-switch-default>The value passed to the view attribute of the calendar is not set</div>\r\n\r\n  <div class=\"alert alert-danger\" ng-hide=\"vm.viewDate\">The value passed to view-date attribute of the calendar is not set</div>\r\n\r\n  <mwl-calendar-year\r\n    events=\"vm.events\"\r\n    view-date=\"vm.viewDate\"\r\n    on-event-click=\"vm.onEventClick\"\r\n    on-event-times-changed=\"vm.onEventTimesChanged\"\r\n    on-timespan-click=\"vm.onTimespanClick\"\r\n    cell-is-open=\"vm.cellIsOpen\"\r\n    cell-modifier=\"vm.cellModifier\"\r\n    slide-box-disabled=\"vm.slideBoxDisabled\"\r\n    custom-template-urls=\"vm.customTemplateUrls\"\r\n    template-scope=\"vm.templateScope\"\r\n    cell-auto-open-disabled=\"vm.cellAutoOpenDisabled\"\r\n    ng-switch-when=\"year\">\r\n  </mwl-calendar-year>\r\n\r\n  <mwl-calendar-month\r\n    events=\"vm.events\"\r\n    view-date=\"vm.viewDate\"\r\n    excluded-days=\"vm.excludedDays\"\r\n    on-event-click=\"vm.onEventClick\"\r\n    on-event-times-changed=\"vm.onEventTimesChanged\"\r\n    on-timespan-click=\"vm.onTimespanClick\"\r\n    on-date-range-select=\"vm.onDateRangeSelect\"\r\n    cell-is-open=\"vm.cellIsOpen\"\r\n    cell-modifier=\"vm.cellModifier\"\r\n    slide-box-disabled=\"vm.slideBoxDisabled\"\r\n    custom-template-urls=\"vm.customTemplateUrls\"\r\n    template-scope=\"vm.templateScope\"\r\n    cell-auto-open-disabled=\"vm.cellAutoOpenDisabled\"\r\n    draggable-auto-scroll=\"vm.draggableAutoScroll\"\r\n    ng-switch-when=\"month\">\r\n  </mwl-calendar-month>\r\n\r\n  <mwl-calendar-week\r\n    events=\"vm.events\"\r\n    view-date=\"vm.viewDate\"\r\n    excluded-days=\"vm.excludedDays\"\r\n    on-event-click=\"vm.onEventClick\"\r\n    on-event-times-changed=\"vm.onEventTimesChanged\"\r\n    day-view-start=\"vm.dayViewStart\"\r\n    day-view-end=\"vm.dayViewEnd\"\r\n    day-view-split=\"vm.dayViewSplit\"\r\n    day-view-event-chunk-size=\"vm.dayViewEventChunkSize\"\r\n    on-timespan-click=\"vm.onTimespanClick\"\r\n    on-date-range-select=\"vm.onDateRangeSelect\"\r\n    custom-template-urls=\"vm.customTemplateUrls\"\r\n    cell-modifier=\"vm.cellModifier\"\r\n    template-scope=\"vm.templateScope\"\r\n    draggable-auto-scroll=\"vm.draggableAutoScroll\"\r\n    ng-switch-when=\"week\">\r\n  </mwl-calendar-week>\r\n\r\n  <mwl-calendar-day\r\n    events=\"vm.events\"\r\n    view-date=\"vm.viewDate\"\r\n    on-event-click=\"vm.onEventClick\"\r\n    on-event-right-click=\"vm.onEventRightClick\"\r\n    on-event-times-changed=\"vm.onEventTimesChanged\"\r\n    on-timespan-click=\"vm.onTimespanClick\"   \r\n    on-date-range-select=\"vm.onDateRangeSelect\"\r\n    day-view-start=\"vm.dayViewStart\"\r\n    day-view-end=\"vm.dayViewEnd\"\r\n    day-view-split=\"vm.dayViewSplit\"\r\n    day-view-event-chunk-size=\"vm.dayViewEventChunkSize\"\r\n    day-view-segment-size=\"vm.dayViewSegmentSize\"\r\n    day-view-event-width=\"vm.dayViewEventWidth\"\r\n    custom-template-urls=\"vm.customTemplateUrls\"\r\n    cell-modifier=\"vm.cellModifier\"\r\n    template-scope=\"vm.templateScope\"\r\n    day-view-time-position=\"vm.dayViewTimePosition || 'default'\"\r\n    draggable-auto-scroll=\"vm.draggableAutoScroll\"\r\n    ng-class=\"{\r\n      'time-on-side' : vm.dayViewTimePosition === 'side',\r\n      'time-hidden' : vm.dayViewTimePosition === 'hidden'\r\n    }\"\r\n    ng-switch-when=\"day\">\r\n  </mwl-calendar-day>\r\n</div>\r\n";
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cal-week-box cal-all-day-events-box\" ng-if=\"vm.allDayEvents.length > 0\">\r\n  <div class=\"cal-day-panel clearfix\">\r\n    <div class=\"row\">\r\n      <div class=\"col-xs-12\">\r\n        <div class=\"cal-row-fluid\">\r\n          <div\r\n            class=\"cal-cell-6 day-highlight\"\r\n            ng-style=\"{backgroundColor: event.color.secondary}\"\r\n            data-event-class\r\n            ng-repeat=\"event in vm.allDayEvents track by event.calendarEventId\">\r\n            <strong>\r\n              <span ng-bind=\"event.startsAt | calendarDate:'datetime':true\"></span>\r\n              <span ng-if=\"event.endsAt\">\r\n                - <span ng-bind=\"event.endsAt | calendarDate:'datetime':true\"></span>\r\n              </span>\r\n            </strong>\r\n            <a\r\n              href=\"javascript:;\"\r\n              class=\"event-item\"\r\n              ng-click=\"vm.onEventClick({calendarEvent: event})\"\r\n              ng-bind-html=\"vm.calendarEventTitle.dayView(event) | calendarTrustAsHtml\">\r\n            </a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"cal-day-box\">\r\n  <div class=\"cal-day-panel clearfix\" ng-style=\"{height: vm.dayViewHeight + 'px', minWidth: vm.viewWidth + 'px'}\">\r\n\r\n    <mwl-calendar-hour-list\r\n      day-view-start=\"vm.dayViewStart\"\r\n      day-view-end=\"vm.dayViewEnd\"\r\n      day-view-split=\"vm.dayViewSplit\"\r\n      on-timespan-click=\"vm.onTimespanClick\"\r\n      on-date-range-select=\"vm.onDateRangeSelect\"\r\n      on-event-times-changed=\"vm.onEventTimesChanged\"\r\n      view-date=\"vm.viewDate\"\r\n      custom-template-urls=\"vm.customTemplateUrls\"\r\n      template-scope=\"vm.templateScope\"\r\n      cell-modifier=\"vm.cellModifier\"\r\n      view=\"day\">\r\n    </mwl-calendar-hour-list>\r\n\r\n    <div\r\n      class=\"pull-left day-event day-highlight\"\r\n      ng-repeat=\"dayEvent in vm.nonAllDayEvents track by dayEvent.event.calendarEventId\"\r\n      ng-class=\"dayEvent.event.cssClass\"\r\n      ng-style=\"{\r\n        top: dayEvent.top - 1 + 'px',\r\n        left: dayEvent.left +  vm.dayViewTimePositionOffset + 'px',\r\n        height: dayEvent.height + 'px',\r\n        width: dayEvent.width + 'px',\r\n        backgroundColor: dayEvent.event.color.secondary,\r\n        borderColor: dayEvent.event.color.primary\r\n      }\"\r\n      mwl-draggable=\"dayEvent.event.draggable === true\"\r\n      axis=\"'xy'\"\r\n      snap-grid=\"{y: vm.dayViewEventChunkSize || 30, x: 50}\"\r\n      on-drag=\"vm.eventDragged(dayEvent.event, y / (vm.dayViewSegmentSize || 30))\"\r\n      on-drag-end=\"vm.eventDragComplete(dayEvent.event, y / (vm.dayViewSegmentSize ||  30))\"\r\n      auto-scroll=\"vm.draggableAutoScroll\"\r\n      mwl-resizable=\"dayEvent.event.resizable === true && dayEvent.event.endsAt\"\r\n      resize-edges=\"{top: true, bottom: true}\"\r\n      on-resize=\"vm.eventResized(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\r\n      on-resize-end=\"vm.eventResizeComplete(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\r\n      uib-popover-html=\"vm.calendarEventTitle.dayViewPopOver(dayEvent.event) | calendarTrustAsHtml\"\r\n      popover-append-to-body=\"true\" popover-trigger=\"'mouseenter'\" popover-placement=\"right\">\r\n\r\n      <span class=\"cal-hours\">\r\n        <span ng-show=\"dayEvent.top == 0\"><span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'day':true\"></span>, </span>\r\n        <span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'time':true\"></span>\r\n      </span>\r\n      <a\r\n        href=\"javascript:;\"\r\n        class=\"event-item\"\r\n        ng-click=\"vm.onEventClick({calendarEvent: dayEvent.event})\">\r\n        <span ng-bind-html=\"vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml\"></span>\r\n      </a>\r\n\r\n      <a\r\n        href=\"javascript:;\"\r\n        class=\"event-item-action\"\r\n        ng-repeat=\"action in dayEvent.event.actions track by $index\"\r\n        ng-class=\"action.cssClass\"\r\n        ng-bind-html=\"action.label | calendarTrustAsHtml\"\r\n        ng-click=\"action.onClick({calendarEvent: dayEvent.event})\">\r\n      </a>\r\n\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
+module.exports = "<div class=\"cal-week-box cal-all-day-events-box\" ng-if=\"vm.allDayEvents.length > 0\">\r\n  <div class=\"cal-day-panel clearfix\">\r\n    <div class=\"row\">\r\n      <div class=\"col-xs-12\">\r\n        <div class=\"cal-row-fluid\">\r\n          <div\r\n            class=\"cal-cell-6 day-highlight\"\r\n            ng-style=\"{backgroundColor: event.color.secondary}\"\r\n            data-event-class\r\n            ng-repeat=\"event in vm.allDayEvents track by event.calendarEventId\">\r\n            <strong>\r\n              <span ng-bind=\"event.startsAt | calendarDate:'datetime':true\"></span>\r\n              <span ng-if=\"event.endsAt\">\r\n                - <span ng-bind=\"event.endsAt | calendarDate:'datetime':true\"></span>\r\n              </span>\r\n            </strong>\r\n            <a\r\n              href=\"javascript:;\"\r\n              class=\"event-item\"\r\n              ng-click=\"vm.onEventClick({calendarEvent: event})\"\r\n              ng-bind-html=\"vm.calendarEventTitle.dayView(event) | calendarTrustAsHtml\">\r\n            </a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"cal-day-box\">\r\n  <div class=\"cal-day-panel clearfix\" ng-style=\"{ height: vm.dayViewHeight + 'px', minWidth: vm.viewWidth + 'px'}\">\r\n    <!-- height: vm.dayViewHeight + 'px',  -->\r\n\r\n    <mwl-calendar-hour-list\r\n      day-view-start=\"vm.dayViewStart\"\r\n      day-view-end=\"vm.dayViewEnd\"\r\n      day-view-split=\"vm.dayViewSplit\"\r\n      on-timespan-click=\"vm.onTimespanClick\"\r\n      on-timespan-right-clicked=\"vm.onTimespanRightClicked\"\r\n      on-date-range-select=\"vm.onDateRangeSelect\"\r\n      on-event-times-changed=\"vm.onEventTimesChanged\"\r\n      view-date=\"vm.viewDate\"\r\n      custom-template-urls=\"vm.customTemplateUrls\"\r\n      template-scope=\"vm.templateScope\"\r\n      cell-modifier=\"vm.cellModifier\"\r\n      view=\"day\">\r\n    </mwl-calendar-hour-list>\r\n\r\n    <div\r\n      class=\"pull-left day-event day-highlight\"\r\n      ng-repeat=\"dayEvent in vm.nonAllDayEvents track by dayEvent.event.calendarEventId\"\r\n      ng-class=\"dayEvent.event.cssClass\"\r\n      event-id = \"{{dayEvent.event.calendarEventId}}\"\r\n      ng-style=\"{\r\n        top: dayEvent.top - 1 + 'px',\r\n        left: dayEvent.left +  vm.dayViewTimePositionOffset + 'px',\r\n        height: dayEvent.height + 'px',\r\n        width: dayEvent.width + 'px',\r\n        backgroundColor: dayEvent.event.color.secondary,\r\n        borderColor: dayEvent.event.color.primary\r\n      }\"\r\n      ng-click=\"vm.onEventClick({calendarEvent: dayEvent.event})\"\r\n      mwl-right-click=\"vm.onEventRightClick({calendarEvent: dayEvent.event})\"\r\n      mwl-draggable=\"dayEvent.event.draggable === true\"\r\n      axis=\"'xy'\"\r\n      snap-grid=\"{y: vm.dayViewEventChunkSize || 30, x: 50}\"\r\n      on-drag=\"vm.eventDragged(dayEvent.event, y / (vm.dayViewSegmentSize || 30))\"\r\n      on-drag-end=\"vm.eventDragComplete(dayEvent.event, y / (vm.dayViewSegmentSize ||  30))\"\r\n      auto-scroll=\"vm.draggableAutoScroll\"\r\n      mwl-resizable=\"dayEvent.event.resizable === true && dayEvent.event.endsAt\"\r\n      resize-edges=\"{top: true, bottom: true}\"\r\n      on-resize=\"vm.eventResized(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\r\n      on-resize-end=\"vm.eventResizeComplete(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\r\n      uib-popover-html=\"vm.calendarEventTitle.dayViewPopOver(dayEvent.event) | calendarTrustAsHtml\"\r\n      popover-append-to-body=\"true\" popover-trigger=\"'mouseenter'\" popover-placement=\"right\">\r\n\r\n      <span class=\"cal-hours\">\r\n        <span ng-show=\"dayEvent.top == 0\"><span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'day':true\"></span>, </span>\r\n        <span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'time':true\"></span>\r\n      </span>\r\n      <span\r\n        class=\"event-item\"\r\n        mwl-right-click=\"vm.onEventRightClick({calendarEvent: dayEvent.event})\"\r\n        >\r\n        <!--           \r\n          href=\"javascript:;\"\r\n          ng-click=\"vm.onEventClick({calendarEvent: dayEvent.event})\" -->\r\n        <span ng-bind-html=\"vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml\"\r\n        event-id = \"{{dayEvent.event.calendarEventId}}\"></span>\r\n    </span>\r\n\r\n      <a\r\n        href=\"javascript:;\"\r\n        class=\"event-item-action\"\r\n        ng-repeat=\"action in dayEvent.event.actions track by $index\"\r\n        ng-class=\"action.cssClass\"\r\n        ng-bind-html=\"action.label | calendarTrustAsHtml\"\r\n        ng-click=\"action.onClick({calendarEvent: dayEvent.event})\">\r\n      </a>\r\n\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cal-day-panel-hour\">\r\n\r\n  <div class=\"cal-day-hour\" ng-repeat=\"hour in vm.hourGrid track by $index\">\r\n\r\n    <div\r\n      class=\"cal-day-hour-part\"\r\n      ng-repeat=\"segment in hour.segments track by $index\"\r\n      ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\r\n                vm.dateRangeSelect.startDate <= segment.date &&\r\n                segment.date < vm.dateRangeSelect.endDate }, segment.cssClass]\"\r\n      ng-click=\"vm.onTimespanClick({calendarDate: segment.date})\"\r\n      mwl-droppable\r\n      on-drop=\"vm.eventDropped(dropData.event, segment.date)\"\r\n      mwl-drag-select=\"!!vm.onDateRangeSelect\"\r\n      on-drag-select-start=\"vm.onDragSelectStart(segment.date)\"\r\n      on-drag-select-move=\"vm.onDragSelectMove(segment.nextSegmentDate)\"\r\n      on-drag-select-end=\"vm.onDragSelectEnd(segment.nextSegmentDate)\"\r\n      ng-if=\"!vm.dayWidth\">\r\n      <div class=\"cal-day-hour-part-time\">\r\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\r\n      </div>\r\n    </div>\r\n\r\n    <div\r\n      class=\"cal-day-hour-part\"\r\n      ng-repeat=\"segment in hour.segments track by $index\"\r\n      ng-if=\"vm.dayWidth\">\r\n      <div class=\"cal-day-hour-part-time\">\r\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\r\n        &nbsp;\r\n      </div>\r\n      <div\r\n        class=\"cal-day-hour-part-spacer\"\r\n        ng-repeat=\"day in segment.days track by $index\"\r\n        ng-style=\"{width: (vm.dayWidth - ($last ? vm.scrollBarWidth : 0)) + 'px'}\"\r\n        ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\r\n                vm.dateRangeSelect.startDate <= day.date &&\r\n                day.date < vm.dateRangeSelect.endDate }, day.cssClass]\"\r\n        ng-click=\"vm.onTimespanClick({calendarDate: day.date})\"\r\n        mwl-droppable\r\n        on-drop=\"vm.eventDropped(dropData.event, day.date)\"\r\n        mwl-drag-select=\"!!vm.onDateRangeSelect\"\r\n        on-drag-select-start=\"vm.onDragSelectStart(day.date)\"\r\n        on-drag-select-move=\"vm.onDragSelectMove(day.nextSegmentDate)\"\r\n        on-drag-select-end=\"vm.onDragSelectEnd(day.nextSegmentDate)\">\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
+module.exports = "<div class=\"cal-day-panel-hour\">\r\n\r\n  <div class=\"cal-day-hour\" ng-repeat=\"hour in vm.hourGrid track by $index\">\r\n\r\n    <div\r\n      class=\"cal-day-hour-part\"\r\n      ng-repeat=\"segment in hour.segments track by $index\"\r\n      ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\r\n                vm.dateRangeSelect.startDate <= segment.date &&\r\n                segment.date < vm.dateRangeSelect.endDate }, segment.cssClass]\"\r\n      ng-click=\"vm.onTimespanClick({calendarDate: segment.date})\"\r\n      segment-date=\"{{segment.date.toDate()}}\"\r\n      mwl-right-click=\"vm.onTimespanRightClicked({calendarDate: segment.date})\"\r\n      mwl-droppable\r\n      on-drop=\"vm.eventDropped(dropData.event, segment.date)\"\r\n      mwl-drag-select=\"!!vm.onDateRangeSelect\"\r\n      on-drag-select-start=\"vm.onDragSelectStart(segment.date)\"\r\n      on-drag-select-move=\"vm.onDragSelectMove(segment.nextSegmentDate)\"\r\n      on-drag-select-end=\"vm.onDragSelectEnd(segment.nextSegmentDate)\"\r\n      ng-if=\"!vm.dayWidth\">\r\n      <div class=\"cal-day-hour-part-time\">\r\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\r\n      </div>\r\n    </div>\r\n\r\n    <div\r\n      class=\"cal-day-hour-part\"\r\n      ng-repeat=\"segment in hour.segments track by $index\"\r\n      ng-if=\"vm.dayWidth\">\r\n      <div class=\"cal-day-hour-part-time\">\r\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\r\n        &nbsp;\r\n      </div>\r\n      <div\r\n        class=\"cal-day-hour-part-spacer\"\r\n        ng-repeat=\"day in segment.days track by $index\"\r\n        ng-style=\"{width: (vm.dayWidth - ($last ? vm.scrollBarWidth : 0)) + 'px'}\"\r\n        ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\r\n                vm.dateRangeSelect.startDate <= day.date &&\r\n                day.date < vm.dateRangeSelect.endDate }, day.cssClass]\"\r\n        ng-click=\"vm.onTimespanClick({calendarDate: day.date})\"\r\n        mwl-droppable\r\n        on-drop=\"vm.eventDropped(dropData.event, day.date)\"\r\n        mwl-drag-select=\"!!vm.onDateRangeSelect\"\r\n        on-drag-select-start=\"vm.onDragSelectStart(day.date)\"\r\n        on-drag-select-move=\"vm.onDragSelectMove(day.nextSegmentDate)\"\r\n        on-drag-select-end=\"vm.onDragSelectEnd(day.nextSegmentDate)\">\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
 
 /***/ }),
 /* 13 */
@@ -1262,7 +1261,8 @@ var map = {
 	"./mwlDroppable.js": 54,
 	"./mwlDynamicDirectiveTemplate.js": 55,
 	"./mwlElementDimensions.js": 56,
-	"./mwlResizable.js": 57
+	"./mwlResizable.js": 57,
+	"./mwlRightClick.js": 58
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -1430,6 +1430,7 @@ angular
         customTemplateUrls: '=?',
         draggableAutoScroll: '=?',
         onEventClick: '&',
+        onEventRightClick: '&',
         onEventTimesChanged: '&',
         onTimespanClick: '&',
         onDateRangeSelect: '&?',
@@ -1570,6 +1571,7 @@ angular
         onEventClick: '=',
         onEventTimesChanged: '=',
         onTimespanClick: '=',
+        onEventRightClick: '=?',
         onDateRangeSelect: '=',
         dayViewStart: '=',
         dayViewEnd: '=',
@@ -3673,11 +3675,38 @@ angular
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var angular = __webpack_require__(0);
+
+angular
+  .module('mwl.calendar')
+  .directive('mwlRightClick', ["$parse", function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var fn = $parse(attrs.mwlRightClick);
+            element.bind('contextmenu', function(event) {
+                scope.$apply(function() {
+                    event.preventDefault();
+                    fn(scope, { $event: event });
+                });
+            });
+        }
+    };
+  }]);
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var map = {
-	"./calendarDate.js": 59,
-	"./calendarLimitTo.js": 60,
-	"./calendarTruncateEventTitle.js": 61,
-	"./calendarTrustAsHtml.js": 62
+	"./calendarDate.js": 60,
+	"./calendarLimitTo.js": 61,
+	"./calendarTruncateEventTitle.js": 62,
+	"./calendarTrustAsHtml.js": 63
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -3693,10 +3722,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 58;
+webpackContext.id = 59;
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3728,7 +3757,7 @@ angular
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3778,7 +3807,7 @@ angular
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3807,7 +3836,7 @@ angular
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3827,16 +3856,16 @@ angular
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./calendarConfig.js": 64,
-	"./calendarEventTitle.js": 65,
-	"./calendarHelper.js": 66,
-	"./calendarTitle.js": 67,
-	"./interact.js": 68,
-	"./moment.js": 70
+	"./calendarConfig.js": 65,
+	"./calendarEventTitle.js": 66,
+	"./calendarHelper.js": 67,
+	"./calendarTitle.js": 68,
+	"./interact.js": 69,
+	"./moment.js": 71
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -3852,10 +3881,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 63;
+webpackContext.id = 64;
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3943,7 +3972,7 @@ angular
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4002,7 +4031,7 @@ angular
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4306,9 +4335,11 @@ angular
               } else {
                 //Update width of the till previous event
                 var eventWidth = maxEventWidth / maxEventsInCascadeCount;
+                var k = 0;
                 for (var j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
                   view.events[j].width = eventWidth;
-                  view.events[j].left = j * eventWidth;
+                  view.events[j].left = k * eventWidth;
+                  k++;
                 }
                 //RESET ALL THE COUNTER VARIABLES
                 previousEventTop = currentEventTop;
@@ -4319,7 +4350,7 @@ angular
               //If this is the last event
               if (i === (view.events.length - 1)) {
                 eventWidth = maxEventWidth / maxEventsInCascadeCount;
-                var k = 0;
+                k = 0;
                 for (j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
                   view.events[j].width = eventWidth;
                   view.events[j].left = k * eventWidth;
@@ -4437,7 +4468,7 @@ angular
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4478,7 +4509,7 @@ angular
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4487,7 +4518,7 @@ angular
 var angular = __webpack_require__(0);
 var interact;
 try {
-  interact = __webpack_require__(69);
+  interact = __webpack_require__(70);
 } catch (e) {
   /* istanbul ignore next */
   interact = null;
@@ -4499,21 +4530,21 @@ angular
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports) {
 
-if(typeof __WEBPACK_EXTERNAL_MODULE_69__ === 'undefined') {var e = new Error("Cannot find module \"undefined\""); e.code = 'MODULE_NOT_FOUND'; throw e;}
-module.exports = __WEBPACK_EXTERNAL_MODULE_69__;
+if(typeof __WEBPACK_EXTERNAL_MODULE_70__ === 'undefined') {var e = new Error("Cannot find module \"undefined\""); e.code = 'MODULE_NOT_FOUND'; throw e;}
+module.exports = __WEBPACK_EXTERNAL_MODULE_70__;
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var angular = __webpack_require__(0);
-var moment = __webpack_require__(71);
+var moment = __webpack_require__(72);
 
 angular
   .module('mwl.calendar')
@@ -4521,10 +4552,10 @@ angular
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_71__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_72__;
 
 /***/ })
 /******/ ]);

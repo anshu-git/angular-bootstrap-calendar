@@ -47,7 +47,9 @@ angular
         actions: actions
       }
     ];
-
+    vm.tempFunction = function(time) {
+      console.log('Hey!! I got called.', event);
+    }
     vm.cellIsOpen = true;
 
     vm.addEvent = function() {

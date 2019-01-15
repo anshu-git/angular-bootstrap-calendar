@@ -298,9 +298,11 @@ angular
               } else {
                 //Update width of the till previous event
                 var eventWidth = maxEventWidth / maxEventsInCascadeCount;
+                var k = 0;
                 for (var j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
                   view.events[j].width = eventWidth;
-                  view.events[j].left = j * eventWidth;
+                  view.events[j].left = k * eventWidth;
+                  k++;
                 }
                 //RESET ALL THE COUNTER VARIABLES
                 previousEventTop = currentEventTop;
@@ -311,7 +313,7 @@ angular
               //If this is the last event
               if (i === (view.events.length - 1)) {
                 eventWidth = maxEventWidth / maxEventsInCascadeCount;
-                var k = 0;
+                k = 0;
                 for (j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
                   view.events[j].width = eventWidth;
                   view.events[j].left = k * eventWidth;
