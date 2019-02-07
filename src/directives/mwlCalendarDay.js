@@ -11,9 +11,8 @@ angular
     vm.calendarEventTitle = calendarEventTitle;
 
     function refreshView() {
-
       vm.timeHidden = vm.dayViewTimePosition === 'hidden';
-      vm.dayViewTimePositionOffset = vm.dayViewTimePosition !== 'default' ? 0 : 60;
+      vm.dayViewTimePositionOffset = vm.dayViewTimePosition !== 'default' ? 0 : 50;
 
       vm.dayViewSplit = vm.dayViewSplit || 30;
       vm.dayViewHeight = calendarHelper.getDayViewHeight(
@@ -45,7 +44,7 @@ angular
 
       vm.allDayEvents = view.allDayEvents;
       vm.nonAllDayEvents = view.events;
-      vm.viewWidth = view.width + 62;
+      vm.viewWidth = view.width;
 
     }
 
@@ -113,6 +112,7 @@ angular
         onEventClick: '=',
         onEventTimesChanged: '=',
         onTimespanClick: '=',
+        onEventRightClick: '=?',
         onDateRangeSelect: '=',
         dayViewStart: '=',
         dayViewEnd: '=',

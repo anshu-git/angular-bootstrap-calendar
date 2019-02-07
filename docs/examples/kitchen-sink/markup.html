@@ -48,21 +48,26 @@
 
   <br>
 
-  <mwl-calendar
-    events="vm.events"
-    view="vm.calendarView"
-    view-title="vm.calendarTitle"
-    view-date="vm.viewDate"
-    on-event-click="vm.eventClicked(calendarEvent)"
-    on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-    cell-is-open="vm.cellIsOpen"
-    day-view-start="06:00"
-    day-view-end="22:59"
-    day-view-split="30"
-    cell-modifier="vm.modifyCell(calendarCell)"
-    cell-auto-open-disabled="true"
-    on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
-  </mwl-calendar>
+  <div class="col-md-6">
+    <mwl-calendar
+     on-event-right-click="vm.tempFunction()"
+      events="vm.events"
+      view="vm.calendarView"
+      view-title="vm.calendarTitle"
+      view-date="vm.viewDate"
+      on-event-click="vm.eventClicked(calendarEvent)"
+      on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+      cell-is-open="vm.cellIsOpen"
+      day-view-start="06:00"
+      day-view-end="22:59"
+      day-view-split="30"
+      cell-modifier="vm.modifyCell(calendarCell)"
+      cell-auto-open-disabled="true"
+      day-view-event-width='546'
+      day-view-time-position="side"
+      on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
+    </mwl-calendar>
+  </div>
 
   <br><br><br>
 

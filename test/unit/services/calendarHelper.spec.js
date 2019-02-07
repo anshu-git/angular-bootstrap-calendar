@@ -593,8 +593,8 @@ describe('calendarHelper', function() {
 
     it('should move events across if there are multiple ones on the same line', function() {
       expect(dayView.events[0].left).to.equal(0);
-      expect(dayView.events[1].left).to.equal(150);
-      expect(dayView.events[2].left).to.equal(300);
+      expect(dayView.events[1].left).to.equal(34.5);
+      expect(dayView.events[2].left).to.equal(69);
     });
 
   });

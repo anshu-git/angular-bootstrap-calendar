@@ -5,7 +5,7 @@ angular
     var vm = this;
 
     //These variables MUST be set as a minimum for the calendar to work
-    vm.calendarView = 'month';
+    vm.calendarView = 'day';
     vm.viewDate = new Date();
     var actions = [{
       label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
@@ -47,7 +47,9 @@ angular
         actions: actions
       }
     ];
-
+    vm.tempFunction = function(time) {
+      console.log('Hey!! I got called.', event);
+    }
     vm.cellIsOpen = true;
 
     vm.addEvent = function() {
