@@ -300,9 +300,25 @@ angular
                 var eventWidth = maxEventWidth / maxEventsInCascadeCount;
                 var k = 0;
                 for (var j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
-                  view.events[j].width = eventWidth;
-                  view.events[j].left = k * eventWidth;
-                  k++;
+                  if (j === 0) {
+                    view.events[j].width = eventWidth;
+                    view.events[j].left = k * eventWidth;
+                    k++;
+                  } else {
+                    var prevTop = view.events[j - 1].top;
+                    var prevBot = view.events[j - 1].top + view.events[j - 1].height;
+                    var curTop = view.events[j].top;
+                    // var curBot = view.events[j].top + view.events[j].height;
+                    if (curTop >= prevTop && curTop <= prevBot) {
+                      view.events[j].width = eventWidth;
+                      view.events[j].left = k * eventWidth;
+                      k++;
+                    } else {
+                      view.events[j].width = eventWidth;
+                      var tempCheck = (k === 0) ? k : (k - 1);
+                      view.events[j].left = tempCheck * eventWidth;
+                    }
+                  }
                 }
                 //RESET ALL THE COUNTER VARIABLES
                 previousEventTop = currentEventTop;
@@ -315,9 +331,25 @@ angular
                 eventWidth = maxEventWidth / maxEventsInCascadeCount;
                 k = 0;
                 for (j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
-                  view.events[j].width = eventWidth;
-                  view.events[j].left = k * eventWidth;
-                  k++;
+                  if (j === 0) {
+                    view.events[j].width = eventWidth;
+                    view.events[j].left = k * eventWidth;
+                    k++;
+                  } else {
+                      prevTop = view.events[j - 1].top;
+                      prevBot = view.events[j - 1].top + view.events[j - 1].height;
+                      curTop = view.events[j].top;
+                      // curBot = view.events[j].top + view.events[j].height;
+                    if (curTop >= prevTop && curTop <= prevBot) {
+                      view.events[j].width = eventWidth;
+                      view.events[j].left = k * eventWidth;
+                      k++;
+                    } else {
+                      view.events[j].width = eventWidth;
+                      tempCheck = (k === 0) ? k : (k - 1);
+                      view.events[j].left = tempCheck * eventWidth;
+                    }
+                  }
                 }
                 maxEventsInCascadeCount = 0;
               }
