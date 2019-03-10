@@ -127,7 +127,7 @@ describe('mwlCalendar directive', function() {
     scope.vm.calendarDay = new Date();
     scope.vm.events[0].title = 'hello event 1';
     scope.$apply();
-    $timeout.flush(5000);
+    $timeout.flush(6000);
     expect(spy).to.have.been.calledWith('calendar.refreshView');
     scope.vm.events[0].title = 'hello event 01';
     scope.$apply();
