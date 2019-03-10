@@ -4195,6 +4195,7 @@ angular
       var dayStart = (dayViewStart || '00:00').split(':');
       var dayEnd = (dayViewEnd || '23:59').split(':');
       dayViewEventWidth = dayViewEventWidth ? dayViewEventWidth : 150;
+      var maxEventWidth = parseInt(dayViewEventWidth) - dayPadding;
       var view = calendarUtils.getDayView({
         events: events.map(function(event) { // hack required to work with event API
           var eventPeriod = getRecurringEventPeriod({
@@ -4213,11 +4214,11 @@ angular
           hour: dayEnd[0],
           minute: dayEnd[1]
         },
-        eventWidth: dayViewEventWidth ? +dayViewEventWidth : 150,
+        eventWidth: maxEventWidth ? +maxEventWidth : 150,
         segmentHeight: dayViewSegmentSize || 30
       });
       // WIDTHS OF THE CALENDAR PANEL AND THE EVENTS TO BE ADJUSTED HERE
-      var maxEventWidth = parseInt(dayViewEventWidth) - dayPadding;
+      // var maxEventWidth = parseInt(dayViewEventWidth) - dayPadding;
       var maxEventsInCascadeCount = 0;
       var startingIndex;
       var previousEventTop = -1, previousEventBottom = -1, currentEventTop, currentEventBottom;
@@ -4232,6 +4233,8 @@ angular
           break;
         default:
           view.width = dayViewEventWidth;
+          var previousEventLeft = -1;
+          var actualEventsInCascade = 0;
           for (var i = 0; i < view.events.length; i++) {
             var event = view.events[i];
             currentEventTop = event.top;
@@ -4242,6 +4245,10 @@ angular
               // In this case total size of the events will reduce
               if (currentEventTop >= previousEventTop && currentEventTop < previousEventBottom) {
                 maxEventsInCascadeCount = maxEventsInCascadeCount + 1;
+                if (previousEventLeft < event.left) {
+                  actualEventsInCascade++;
+                  previousEventLeft = event.left;
+                }
 
                 // Update the cumulative height of the events in cascade
                 if (currentEventBottom > previousEventBottom) {
@@ -4249,12 +4256,62 @@ angular
                 }
               } else {
                 //Update width of the till previous event
-                var eventWidth = maxEventWidth / maxEventsInCascadeCount;
-                var k = 0;
+                // var eventWidth = maxEventWidth / maxEventsInCascadeCount;
+                // var k = 0;
                 for (var j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
-                  view.events[j].width = eventWidth;
-                  view.events[j].left = k * eventWidth;
-                  k++;
+                  // Loop through to find number of cascades
+                  var prevLeft = view.events[j].left, startRight = view.events[j].left + view.events[j].width;
+                  var prevTop = view.events[j].top, prevBottom = view.events[j].top + view.events[j].height;
+                  var cascadeEventsList = [], widthReduceCount = 0;
+                  var widthReduceLeftCount = 0;
+                  var widthReduceRightCount = 1;
+                  var prevRight = view.events[j].left + view.events[j].width;
+                  for (var idx = j + 1; idx < startingIndex + maxEventsInCascadeCount; idx++) {
+                    var dummyCondition = true;
+                    var tempIndex = j + 1;
+                    while (dummyCondition) {
+                      if (tempIndex >= startingIndex + maxEventsInCascadeCount) {
+                        var seedLeft = prevRight;
+                        break;
+                      } else if (view.events[tempIndex].left > prevLeft) {
+                        seedLeft = view.events[tempIndex].left;
+                        break;
+                      }
+                      tempIndex++;
+                    }
+                    var curLeft = view.events[idx].left, curRight = view.events[idx].left + view.events[idx].width;
+                    if (curLeft === seedLeft && curLeft !== prevLeft) {
+                      cascadeEventsList.push(idx);
+                    }
+                    if (curRight > prevRight) {
+                      widthReduceRightCount++;
+                      prevRight = curRight;
+                    }
+                  }
+                  var alreadyFoundLeftArray = [];
+                  for (var index = j - 1; index >= startingIndex; index--) {
+                    curLeft = view.events[index].left; curRight = view.events[index].left + view.events[index].width;
+                    var curTop = view.events[index].top, curBottom = view.events[index].top + view.events[index].height;
+                    if (curLeft < prevLeft && alreadyFoundLeftArray.indexOf(curLeft) === -1) {
+                      widthReduceLeftCount++;
+                      alreadyFoundLeftArray.push(curLeft);
+                    } else if (curLeft > prevLeft && curTop <= prevTop && curBottom >= prevBottom) {
+                      view.events[j].width = view.events[index].left;
+                    }
+                  }
+                  widthReduceCount = widthReduceLeftCount + widthReduceRightCount;
+                  if (actualEventsInCascade > widthReduceCount) {
+                    var effectiveWidth = view.events[j].width - view.events[j].left;
+                    view.events[j].width = effectiveWidth / widthReduceRightCount;
+                  } else {
+                    view.events[j].width = view.events[j].width / widthReduceCount;
+                  }
+                  var newRight = view.events[j].left + view.events[j].width;
+                  for (var l = 0; l < cascadeEventsList.length; l++) {
+                    view.events[cascadeEventsList[l]].originalLeft = view.events[cascadeEventsList[l]].left;
+                    view.events[cascadeEventsList[l]].left = newRight;
+                  }
+
                 }
                 //RESET ALL THE COUNTER VARIABLES
                 previousEventTop = currentEventTop;
@@ -4264,16 +4321,71 @@ angular
               }
               //If this is the last event
               if (i === (view.events.length - 1)) {
-                eventWidth = maxEventWidth / maxEventsInCascadeCount;
-                k = 0;
                 for (j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
-                  view.events[j].width = eventWidth;
-                  view.events[j].left = k * eventWidth;
-                  k++;
+                  // Loop through to find number of cascades
+                  prevLeft = view.events[j].left;
+                  startRight = view.events[j].left + view.events[j].width;
+                  prevRight = startRight;
+                  prevTop = view.events[j].top;
+                  prevBottom = view.events[j].top + view.events[j].height;
+                  cascadeEventsList = [];
+                  widthReduceLeftCount = 0;
+                  widthReduceRightCount = 1;
+                  for (idx = j + 1; idx < startingIndex + maxEventsInCascadeCount; idx++) {
+                    dummyCondition = true;
+                    tempIndex = j + 1;
+                    while (dummyCondition) {
+                      if (tempIndex >= startingIndex + maxEventsInCascadeCount) {
+                        seedLeft = prevRight;
+                        break;
+                      } else if (view.events[tempIndex].left > prevLeft) {
+                        seedLeft = view.events[tempIndex].left;
+                        break;
+                      }
+                      tempIndex++;
+                    }
+                    curLeft = view.events[idx].left;
+                    curRight = view.events[idx].left + view.events[idx].width;
+                    if (curLeft === seedLeft && curLeft !== prevLeft) {
+                      cascadeEventsList.push(idx);
+                    }
+                    if (curRight > prevRight) {
+                      widthReduceRightCount++;
+                      prevRight = curRight;
+                    }
+                  }
+                  alreadyFoundLeftArray = [];
+                  for (index = j - 1; index >= startingIndex; index--) {
+                    curLeft = view.events[index].left; curRight = view.events[index].left + view.events[index].width;
+                    curTop = view.events[index].top;
+                    curBottom = view.events[index].top + view.events[index].height;
+                    if (curLeft < prevLeft && alreadyFoundLeftArray.indexOf(curLeft) === -1) {
+                      widthReduceLeftCount++;
+                      alreadyFoundLeftArray.push(curLeft);
+                    } else if (curLeft > prevLeft && curTop <= prevTop && curBottom >= prevBottom) {
+                      view.events[j].width = view.events[index].left;
+                    }
+                  }
+                  widthReduceCount = widthReduceLeftCount + widthReduceRightCount;
+                  if (actualEventsInCascade > widthReduceCount) {
+                    effectiveWidth = view.events[j].width - view.events[j].left;
+                    view.events[j].width = effectiveWidth / widthReduceRightCount;
+                  } else {
+                    view.events[j].width = view.events[j].width / widthReduceCount;
+                  }
+                  newRight = view.events[j].left + view.events[j].width;
+                  for (l = 0; l < cascadeEventsList.length; l++) {
+                    view.events[cascadeEventsList[l]].left = newRight;
+                  }
+
                 }
                 maxEventsInCascadeCount = 0;
               }
             } else {
+              if (previousEventLeft < event.left) {
+                actualEventsInCascade++;
+                previousEventLeft = event.left;
+              }
               previousEventTop = currentEventTop;
               previousEventBottom = currentEventBottom;
               maxEventsInCascadeCount = maxEventsInCascadeCount + 1;

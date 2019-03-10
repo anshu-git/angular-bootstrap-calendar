@@ -8,7 +8,7 @@
       ng-class="[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&
                 vm.dateRangeSelect.startDate <= segment.date &&
                 segment.date < vm.dateRangeSelect.endDate }, segment.cssClass]"
-      ng-click="vm.onTimespanClick({calendarDate: segment.date})"
+      ng-dblclick="vm.onTimespanClick({calendarDate: segment.date})"
       segment-date="{{segment.date.toDate()}}"
       mwl-right-click="vm.onTimespanRightClicked({calendarDate: segment.date})"
       mwl-droppable
@@ -38,7 +38,7 @@
         ng-class="[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&
                 vm.dateRangeSelect.startDate <= day.date &&
                 day.date < vm.dateRangeSelect.endDate }, day.cssClass]"
-        ng-click="vm.onTimespanClick({calendarDate: day.date})"
+        ng-dblclick="vm.onTimespanClick({calendarDate: day.date})"
         mwl-droppable
         on-drop="vm.eventDropped(dropData.event, day.date)"
         mwl-drag-select="!!vm.onDateRangeSelect"

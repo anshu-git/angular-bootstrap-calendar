@@ -22,8 +22,8 @@ angular
       {
         title: 'An event',
         color: calendarConfig.colorTypes.warning,
-        startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-        endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
+        startsAt: (new moment('2019-03-10 11:00:00')).toDate(),
+        endsAt: (new moment("2019-03-10 19:00:00")).toDate(),
         draggable: true,
         resizable: true,
         popOverTemplate:'<div>Hello PopOver!!!</div>',
@@ -31,17 +31,48 @@ angular
       }, {
         title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
         color: calendarConfig.colorTypes.info,
-        startsAt: moment().subtract(1, 'day').toDate(),
-        endsAt: moment().add(5, 'days').toDate(),
+        startsAt: (new moment('2019-03-10 11:30:00')).toDate(),
+        endsAt: (new moment("2019-03-10 11:45:00")).toDate(),
         draggable: true,
         resizable: true,
         actions: actions
       }, {
-        title: 'This is a really long event title that occurs on every year',
-        color: calendarConfig.colorTypes.important,
-        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-        recursOn: 'year',
+        title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+        color: calendarConfig.colorTypes.info,
+        startsAt: (new moment('2019-03-10 11:30:00')).toDate(),
+        endsAt: (new moment("2019-03-10 11:45:00")).toDate(),
+        draggable: true,
+        resizable: true,
+        actions: actions
+      }, {
+        title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+        color: calendarConfig.colorTypes.info,
+        startsAt: (new moment('2019-03-10 11:00:00')).toDate(),
+        endsAt: (new moment("2019-03-10 19:30:00")).toDate(),
+        draggable: true,
+        resizable: true,
+        actions: actions
+      },{
+        title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+        color: calendarConfig.colorTypes.info,
+        startsAt: (new moment('2019-03-10 11:45:00')).toDate(),
+        endsAt: (new moment("2019-03-10 12:15:00")).toDate(),
+        draggable: true,
+        resizable: true,
+        actions: actions
+      },{
+        title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+        color: calendarConfig.colorTypes.info,
+        startsAt: (new moment('2019-03-10 13:30:00')).toDate(),
+        endsAt: (new moment("2019-03-10 14:00:00")).toDate(),
+        draggable: true,
+        resizable: true,
+        actions: actions
+      },{
+        title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+        color: calendarConfig.colorTypes.info,
+        startsAt: (new moment('2019-03-10 14:00:00')).toDate(),
+        endsAt: (new moment("2019-03-10 14:45:00")).toDate(),
         draggable: true,
         resizable: true,
         actions: actions

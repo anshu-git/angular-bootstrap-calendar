@@ -1198,13 +1198,13 @@ module.exports = "<div\r\n  class=\"cal-context\"\r\n  ng-switch=\"vm.view\"\r\n
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cal-week-box cal-all-day-events-box\" ng-if=\"vm.allDayEvents.length > 0\">\r\n  <div class=\"cal-day-panel clearfix\">\r\n    <div class=\"row\">\r\n      <div class=\"col-xs-12\">\r\n        <div class=\"cal-row-fluid\">\r\n          <div\r\n            class=\"cal-cell-6 day-highlight\"\r\n            ng-style=\"{backgroundColor: event.color.secondary}\"\r\n            data-event-class\r\n            ng-repeat=\"event in vm.allDayEvents track by event.calendarEventId\">\r\n            <strong>\r\n              <span ng-bind=\"event.startsAt | calendarDate:'datetime':true\"></span>\r\n              <span ng-if=\"event.endsAt\">\r\n                - <span ng-bind=\"event.endsAt | calendarDate:'datetime':true\"></span>\r\n              </span>\r\n            </strong>\r\n            <a\r\n              href=\"javascript:;\"\r\n              class=\"event-item\"\r\n              ng-click=\"vm.onEventClick({calendarEvent: event})\"\r\n              ng-bind-html=\"vm.calendarEventTitle.dayView(event) | calendarTrustAsHtml\">\r\n            </a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"cal-day-box\">\r\n  <div class=\"cal-day-panel clearfix\" ng-style=\"{ height: vm.dayViewHeight + 'px', minWidth: vm.viewWidth + 'px'}\">\r\n    <!-- height: vm.dayViewHeight + 'px',  -->\r\n\r\n    <mwl-calendar-hour-list\r\n      day-view-start=\"vm.dayViewStart\"\r\n      day-view-end=\"vm.dayViewEnd\"\r\n      day-view-split=\"vm.dayViewSplit\"\r\n      on-timespan-click=\"vm.onTimespanClick\"\r\n      on-timespan-right-clicked=\"vm.onTimespanRightClicked\"\r\n      on-date-range-select=\"vm.onDateRangeSelect\"\r\n      on-event-times-changed=\"vm.onEventTimesChanged\"\r\n      view-date=\"vm.viewDate\"\r\n      custom-template-urls=\"vm.customTemplateUrls\"\r\n      template-scope=\"vm.templateScope\"\r\n      cell-modifier=\"vm.cellModifier\"\r\n      view=\"day\">\r\n    </mwl-calendar-hour-list>\r\n\r\n    <div\r\n      class=\"pull-left day-event day-highlight\"\r\n      ng-repeat=\"dayEvent in vm.nonAllDayEvents track by dayEvent.event.calendarEventId\"\r\n      ng-class=\"dayEvent.event.cssClass\"\r\n      event-id = \"{{dayEvent.event.calendarEventId}}\"\r\n      ng-style=\"{\r\n        top: dayEvent.top - 1 + 'px',\r\n        left: dayEvent.left +  vm.dayViewTimePositionOffset + 'px',\r\n        height: dayEvent.height + 'px',\r\n        width: dayEvent.width + 'px',\r\n        backgroundColor: dayEvent.event.color.secondary,\r\n        borderColor: dayEvent.event.color.primary\r\n      }\"\r\n      ng-click=\"vm.onEventClick({calendarEvent: dayEvent.event})\"\r\n      mwl-right-click=\"vm.onEventRightClick({calendarEvent: dayEvent.event})\"\r\n      mwl-draggable=\"dayEvent.event.draggable === true\"\r\n      axis=\"'xy'\"\r\n      snap-grid=\"{y: vm.dayViewEventChunkSize || 30, x: 50}\"\r\n      on-drag=\"vm.eventDragged(dayEvent.event, y / (vm.dayViewSegmentSize || 30))\"\r\n      on-drag-end=\"vm.eventDragComplete(dayEvent.event, y / (vm.dayViewSegmentSize ||  30))\"\r\n      auto-scroll=\"vm.draggableAutoScroll\"\r\n      mwl-resizable=\"dayEvent.event.resizable === true && dayEvent.event.endsAt\"\r\n      resize-edges=\"{top: true, bottom: true}\"\r\n      on-resize=\"vm.eventResized(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\r\n      on-resize-end=\"vm.eventResizeComplete(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\r\n      uib-popover-html=\"vm.calendarEventTitle.dayViewPopOver(dayEvent.event) | calendarTrustAsHtml\"\r\n      popover-append-to-body=\"true\" popover-trigger=\"'mouseenter'\" popover-placement=\"right\">\r\n\r\n      <span class=\"cal-hours\">\r\n        <span ng-show=\"dayEvent.top == 0\"><span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'day':true\"></span>, </span>\r\n        <span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'time':true\"></span>\r\n      </span>\r\n      <span\r\n        class=\"event-item\"\r\n        mwl-right-click=\"vm.onEventRightClick({calendarEvent: dayEvent.event})\"\r\n        >\r\n        <!--           \r\n          href=\"javascript:;\"\r\n          ng-click=\"vm.onEventClick({calendarEvent: dayEvent.event})\" -->\r\n        <span ng-bind-html=\"vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml\"\r\n        event-id = \"{{dayEvent.event.calendarEventId}}\"></span>\r\n    </span>\r\n\r\n      <a\r\n        href=\"javascript:;\"\r\n        class=\"event-item-action\"\r\n        ng-repeat=\"action in dayEvent.event.actions track by $index\"\r\n        ng-class=\"action.cssClass\"\r\n        ng-bind-html=\"action.label | calendarTrustAsHtml\"\r\n        ng-click=\"action.onClick({calendarEvent: dayEvent.event})\">\r\n      </a>\r\n\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
+module.exports = "<div class=\"cal-week-box cal-all-day-events-box\" ng-if=\"vm.allDayEvents.length > 0\">\r\n  <div class=\"cal-day-panel clearfix\">\r\n    <div class=\"row\">\r\n      <div class=\"col-xs-12\">\r\n        <div class=\"cal-row-fluid\">\r\n          <div\r\n            class=\"cal-cell-6 day-highlight\"\r\n            ng-style=\"{backgroundColor: event.color.secondary}\"\r\n            data-event-class\r\n            ng-repeat=\"event in vm.allDayEvents track by event.calendarEventId\">\r\n            <strong>\r\n              <span ng-bind=\"event.startsAt | calendarDate:'datetime':true\"></span>\r\n              <span ng-if=\"event.endsAt\">\r\n                - <span ng-bind=\"event.endsAt | calendarDate:'datetime':true\"></span>\r\n              </span>\r\n            </strong>\r\n            <a\r\n              href=\"javascript:;\"\r\n              class=\"event-item\"\r\n              ng-click=\"vm.onEventClick({calendarEvent: event})\"\r\n              ng-bind-html=\"vm.calendarEventTitle.dayView(event) | calendarTrustAsHtml\">\r\n            </a>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"cal-day-box\">\r\n  <div class=\"cal-day-panel clearfix\" ng-style=\"{ height: vm.dayViewHeight + 'px', minWidth: vm.viewWidth + 'px'}\">\r\n    <!-- height: vm.dayViewHeight + 'px',  -->\r\n\r\n    <mwl-calendar-hour-list\r\n      day-view-start=\"vm.dayViewStart\"\r\n      day-view-end=\"vm.dayViewEnd\"\r\n      day-view-split=\"vm.dayViewSplit\"\r\n      on-timespan-click=\"vm.onTimespanClick\"\r\n      on-timespan-right-clicked=\"vm.onTimespanRightClicked\"\r\n      on-date-range-select=\"vm.onDateRangeSelect\"\r\n      on-event-times-changed=\"vm.onEventTimesChanged\"\r\n      view-date=\"vm.viewDate\"\r\n      custom-template-urls=\"vm.customTemplateUrls\"\r\n      template-scope=\"vm.templateScope\"\r\n      cell-modifier=\"vm.cellModifier\"\r\n      view=\"day\">\r\n    </mwl-calendar-hour-list>\r\n\r\n    <div\r\n      class=\"pull-left day-event day-highlight\"\r\n      ng-repeat=\"dayEvent in vm.nonAllDayEvents track by dayEvent.event.calendarEventId\"\r\n      ng-class=\"dayEvent.event.cssClass\"\r\n      event-id = \"{{dayEvent.event.calendarEventId}}\"\r\n      ng-style=\"{\r\n        top: dayEvent.top - 1 + 'px',\r\n        left: dayEvent.left +  vm.dayViewTimePositionOffset + 'px',\r\n        height: dayEvent.height + 'px',\r\n        width: dayEvent.width + 'px',\r\n        backgroundColor: dayEvent.event.color.secondary,\r\n        borderColor: dayEvent.event.color.primary\r\n      }\"\r\n      ng-click=\"vm.onEventClick({calendarEvent: dayEvent.event})\"\r\n      mwl-right-click=\"vm.onEventRightClick({calendarEvent: dayEvent.event})\"\r\n      mwl-draggable=\"dayEvent.event.draggable === true\"\r\n      axis=\"'xy'\"\r\n      snap-grid=\"{y: vm.dayViewEventChunkSize || 30, x: 50}\"\r\n      on-drag=\"vm.eventDragged(dayEvent.event, y / (vm.dayViewSegmentSize || 30))\"\r\n      on-drag-end=\"vm.eventDragComplete(dayEvent.event, y / (vm.dayViewSegmentSize ||  30))\"\r\n      auto-scroll=\"vm.draggableAutoScroll\"\r\n      mwl-resizable=\"dayEvent.event.resizable === true && dayEvent.event.endsAt\"\r\n      resize-edges=\"{top: true, bottom: true}\"\r\n      on-resize=\"vm.eventResized(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\r\n      on-resize-end=\"vm.eventResizeComplete(dayEvent.event, edge, y / (vm.dayViewSegmentSize || 30))\"\r\n      uib-popover-html=\"vm.calendarEventTitle.dayViewPopOver(dayEvent.event) | calendarTrustAsHtml\"\r\n      popover-append-to-body=\"true\" popover-trigger=\"'mouseenter'\" popover-placement=\"auto right\" popover-class=\"popover-max-width\">\r\n\r\n      <span class=\"cal-hours\">\r\n        <span ng-show=\"dayEvent.top == 0\"><span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'day':true\"></span>, </span>\r\n        <span ng-bind=\"(dayEvent.event.tempStartsAt || dayEvent.event.startsAt) | calendarDate:'time':true\"></span>\r\n      </span>\r\n      <span\r\n        class=\"event-item\"\r\n        mwl-right-click=\"vm.onEventRightClick({calendarEvent: dayEvent.event})\"\r\n        >\r\n        <!--           \r\n          href=\"javascript:;\"\r\n          ng-click=\"vm.onEventClick({calendarEvent: dayEvent.event})\" -->\r\n        <span ng-bind-html=\"vm.calendarEventTitle.dayView(dayEvent.event) | calendarTrustAsHtml\"\r\n        event-id = \"{{dayEvent.event.calendarEventId}}\"></span>\r\n    </span>\r\n\r\n      <a\r\n        href=\"javascript:;\"\r\n        class=\"event-item-action\"\r\n        ng-repeat=\"action in dayEvent.event.actions track by $index\"\r\n        ng-class=\"action.cssClass\"\r\n        ng-bind-html=\"action.label | calendarTrustAsHtml\"\r\n        ng-click=\"action.onClick({calendarEvent: dayEvent.event})\">\r\n      </a>\r\n\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"cal-day-panel-hour\">\r\n\r\n  <div class=\"cal-day-hour\" ng-repeat=\"hour in vm.hourGrid track by $index\">\r\n\r\n    <div\r\n      class=\"cal-day-hour-part\"\r\n      ng-repeat=\"segment in hour.segments track by $index\"\r\n      ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\r\n                vm.dateRangeSelect.startDate <= segment.date &&\r\n                segment.date < vm.dateRangeSelect.endDate }, segment.cssClass]\"\r\n      ng-click=\"vm.onTimespanClick({calendarDate: segment.date})\"\r\n      segment-date=\"{{segment.date.toDate()}}\"\r\n      mwl-right-click=\"vm.onTimespanRightClicked({calendarDate: segment.date})\"\r\n      mwl-droppable\r\n      on-drop=\"vm.eventDropped(dropData.event, segment.date)\"\r\n      mwl-drag-select=\"!!vm.onDateRangeSelect\"\r\n      on-drag-select-start=\"vm.onDragSelectStart(segment.date)\"\r\n      on-drag-select-move=\"vm.onDragSelectMove(segment.nextSegmentDate)\"\r\n      on-drag-select-end=\"vm.onDragSelectEnd(segment.nextSegmentDate)\"\r\n      ng-if=\"!vm.dayWidth\">\r\n      <div class=\"cal-day-hour-part-time\">\r\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\r\n      </div>\r\n    </div>\r\n\r\n    <div\r\n      class=\"cal-day-hour-part\"\r\n      ng-repeat=\"segment in hour.segments track by $index\"\r\n      ng-if=\"vm.dayWidth\">\r\n      <div class=\"cal-day-hour-part-time\">\r\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\r\n        &nbsp;\r\n      </div>\r\n      <div\r\n        class=\"cal-day-hour-part-spacer\"\r\n        ng-repeat=\"day in segment.days track by $index\"\r\n        ng-style=\"{width: (vm.dayWidth - ($last ? vm.scrollBarWidth : 0)) + 'px'}\"\r\n        ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\r\n                vm.dateRangeSelect.startDate <= day.date &&\r\n                day.date < vm.dateRangeSelect.endDate }, day.cssClass]\"\r\n        ng-click=\"vm.onTimespanClick({calendarDate: day.date})\"\r\n        mwl-droppable\r\n        on-drop=\"vm.eventDropped(dropData.event, day.date)\"\r\n        mwl-drag-select=\"!!vm.onDateRangeSelect\"\r\n        on-drag-select-start=\"vm.onDragSelectStart(day.date)\"\r\n        on-drag-select-move=\"vm.onDragSelectMove(day.nextSegmentDate)\"\r\n        on-drag-select-end=\"vm.onDragSelectEnd(day.nextSegmentDate)\">\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
+module.exports = "<div class=\"cal-day-panel-hour\">\r\n\r\n  <div class=\"cal-day-hour\" ng-repeat=\"hour in vm.hourGrid track by $index\">\r\n\r\n    <div\r\n      class=\"cal-day-hour-part\"\r\n      ng-repeat=\"segment in hour.segments track by $index\"\r\n      ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\r\n                vm.dateRangeSelect.startDate <= segment.date &&\r\n                segment.date < vm.dateRangeSelect.endDate }, segment.cssClass]\"\r\n      ng-dblclick=\"vm.onTimespanClick({calendarDate: segment.date})\"\r\n      segment-date=\"{{segment.date.toDate()}}\"\r\n      mwl-right-click=\"vm.onTimespanRightClicked({calendarDate: segment.date})\"\r\n      mwl-droppable\r\n      on-drop=\"vm.eventDropped(dropData.event, segment.date)\"\r\n      mwl-drag-select=\"!!vm.onDateRangeSelect\"\r\n      on-drag-select-start=\"vm.onDragSelectStart(segment.date)\"\r\n      on-drag-select-move=\"vm.onDragSelectMove(segment.nextSegmentDate)\"\r\n      on-drag-select-end=\"vm.onDragSelectEnd(segment.nextSegmentDate)\"\r\n      ng-if=\"!vm.dayWidth\">\r\n      <div class=\"cal-day-hour-part-time\">\r\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\r\n      </div>\r\n    </div>\r\n\r\n    <div\r\n      class=\"cal-day-hour-part\"\r\n      ng-repeat=\"segment in hour.segments track by $index\"\r\n      ng-if=\"vm.dayWidth\">\r\n      <div class=\"cal-day-hour-part-time\">\r\n        <strong ng-bind=\"segment.date | calendarDate:'hour':true\" ng-show=\"segment.isStart\"></strong>\r\n        &nbsp;\r\n      </div>\r\n      <div\r\n        class=\"cal-day-hour-part-spacer\"\r\n        ng-repeat=\"day in segment.days track by $index\"\r\n        ng-style=\"{width: (vm.dayWidth - ($last ? vm.scrollBarWidth : 0)) + 'px'}\"\r\n        ng-class=\"[{ 'cal-day-hour-part-selected': vm.dateRangeSelect &&\r\n                vm.dateRangeSelect.startDate <= day.date &&\r\n                day.date < vm.dateRangeSelect.endDate }, day.cssClass]\"\r\n        ng-dblclick=\"vm.onTimespanClick({calendarDate: day.date})\"\r\n        mwl-droppable\r\n        on-drop=\"vm.eventDropped(dropData.event, day.date)\"\r\n        mwl-drag-select=\"!!vm.onDateRangeSelect\"\r\n        on-drag-select-start=\"vm.onDragSelectStart(day.date)\"\r\n        on-drag-select-move=\"vm.onDragSelectMove(day.nextSegmentDate)\"\r\n        on-drag-select-end=\"vm.onDragSelectEnd(day.nextSegmentDate)\">\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n";
 
 /***/ }),
 /* 13 */
@@ -4280,6 +4280,7 @@ angular
       var dayStart = (dayViewStart || '00:00').split(':');
       var dayEnd = (dayViewEnd || '23:59').split(':');
       dayViewEventWidth = dayViewEventWidth ? dayViewEventWidth : 150;
+      var maxEventWidth = parseInt(dayViewEventWidth) - dayPadding;
       var view = calendarUtils.getDayView({
         events: events.map(function(event) { // hack required to work with event API
           var eventPeriod = getRecurringEventPeriod({
@@ -4298,11 +4299,11 @@ angular
           hour: dayEnd[0],
           minute: dayEnd[1]
         },
-        eventWidth: dayViewEventWidth ? +dayViewEventWidth : 150,
+        eventWidth: maxEventWidth ? +maxEventWidth : 150,
         segmentHeight: dayViewSegmentSize || 30
       });
       // WIDTHS OF THE CALENDAR PANEL AND THE EVENTS TO BE ADJUSTED HERE
-      var maxEventWidth = parseInt(dayViewEventWidth) - dayPadding;
+      // var maxEventWidth = parseInt(dayViewEventWidth) - dayPadding;
       var maxEventsInCascadeCount = 0;
       var startingIndex;
       var previousEventTop = -1, previousEventBottom = -1, currentEventTop, currentEventBottom;
@@ -4317,6 +4318,8 @@ angular
           break;
         default:
           view.width = dayViewEventWidth;
+          var previousEventLeft = -1;
+          var actualEventsInCascade = 0;
           for (var i = 0; i < view.events.length; i++) {
             var event = view.events[i];
             currentEventTop = event.top;
@@ -4327,6 +4330,10 @@ angular
               // In this case total size of the events will reduce
               if (currentEventTop >= previousEventTop && currentEventTop < previousEventBottom) {
                 maxEventsInCascadeCount = maxEventsInCascadeCount + 1;
+                if (previousEventLeft < event.left) {
+                  actualEventsInCascade++;
+                  previousEventLeft = event.left;
+                }
 
                 // Update the cumulative height of the events in cascade
                 if (currentEventBottom > previousEventBottom) {
@@ -4334,12 +4341,62 @@ angular
                 }
               } else {
                 //Update width of the till previous event
-                var eventWidth = maxEventWidth / maxEventsInCascadeCount;
-                var k = 0;
+                // var eventWidth = maxEventWidth / maxEventsInCascadeCount;
+                // var k = 0;
                 for (var j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
-                  view.events[j].width = eventWidth;
-                  view.events[j].left = k * eventWidth;
-                  k++;
+                  // Loop through to find number of cascades
+                  var prevLeft = view.events[j].left, startRight = view.events[j].left + view.events[j].width;
+                  var prevTop = view.events[j].top, prevBottom = view.events[j].top + view.events[j].height;
+                  var cascadeEventsList = [], widthReduceCount = 0;
+                  var widthReduceLeftCount = 0;
+                  var widthReduceRightCount = 1;
+                  var prevRight = view.events[j].left + view.events[j].width;
+                  for (var idx = j + 1; idx < startingIndex + maxEventsInCascadeCount; idx++) {
+                    var dummyCondition = true;
+                    var tempIndex = j + 1;
+                    while (dummyCondition) {
+                      if (tempIndex >= startingIndex + maxEventsInCascadeCount) {
+                        var seedLeft = prevRight;
+                        break;
+                      } else if (view.events[tempIndex].left > prevLeft) {
+                        seedLeft = view.events[tempIndex].left;
+                        break;
+                      }
+                      tempIndex++;
+                    }
+                    var curLeft = view.events[idx].left, curRight = view.events[idx].left + view.events[idx].width;
+                    if (curLeft === seedLeft && curLeft !== prevLeft) {
+                      cascadeEventsList.push(idx);
+                    }
+                    if (curRight > prevRight) {
+                      widthReduceRightCount++;
+                      prevRight = curRight;
+                    }
+                  }
+                  var alreadyFoundLeftArray = [];
+                  for (var index = j - 1; index >= startingIndex; index--) {
+                    curLeft = view.events[index].left; curRight = view.events[index].left + view.events[index].width;
+                    var curTop = view.events[index].top, curBottom = view.events[index].top + view.events[index].height;
+                    if (curLeft < prevLeft && alreadyFoundLeftArray.indexOf(curLeft) === -1) {
+                      widthReduceLeftCount++;
+                      alreadyFoundLeftArray.push(curLeft);
+                    } else if (curLeft > prevLeft && curTop <= prevTop && curBottom >= prevBottom) {
+                      view.events[j].width = view.events[index].left;
+                    }
+                  }
+                  widthReduceCount = widthReduceLeftCount + widthReduceRightCount;
+                  if (actualEventsInCascade > widthReduceCount) {
+                    var effectiveWidth = view.events[j].width - view.events[j].left;
+                    view.events[j].width = effectiveWidth / widthReduceRightCount;
+                  } else {
+                    view.events[j].width = view.events[j].width / widthReduceCount;
+                  }
+                  var newRight = view.events[j].left + view.events[j].width;
+                  for (var l = 0; l < cascadeEventsList.length; l++) {
+                    view.events[cascadeEventsList[l]].originalLeft = view.events[cascadeEventsList[l]].left;
+                    view.events[cascadeEventsList[l]].left = newRight;
+                  }
+
                 }
                 //RESET ALL THE COUNTER VARIABLES
                 previousEventTop = currentEventTop;
@@ -4349,16 +4406,71 @@ angular
               }
               //If this is the last event
               if (i === (view.events.length - 1)) {
-                eventWidth = maxEventWidth / maxEventsInCascadeCount;
-                k = 0;
                 for (j = startingIndex; j < startingIndex + maxEventsInCascadeCount; j++) {
-                  view.events[j].width = eventWidth;
-                  view.events[j].left = k * eventWidth;
-                  k++;
+                  // Loop through to find number of cascades
+                  prevLeft = view.events[j].left;
+                  startRight = view.events[j].left + view.events[j].width;
+                  prevRight = startRight;
+                  prevTop = view.events[j].top;
+                  prevBottom = view.events[j].top + view.events[j].height;
+                  cascadeEventsList = [];
+                  widthReduceLeftCount = 0;
+                  widthReduceRightCount = 1;
+                  for (idx = j + 1; idx < startingIndex + maxEventsInCascadeCount; idx++) {
+                    dummyCondition = true;
+                    tempIndex = j + 1;
+                    while (dummyCondition) {
+                      if (tempIndex >= startingIndex + maxEventsInCascadeCount) {
+                        seedLeft = prevRight;
+                        break;
+                      } else if (view.events[tempIndex].left > prevLeft) {
+                        seedLeft = view.events[tempIndex].left;
+                        break;
+                      }
+                      tempIndex++;
+                    }
+                    curLeft = view.events[idx].left;
+                    curRight = view.events[idx].left + view.events[idx].width;
+                    if (curLeft === seedLeft && curLeft !== prevLeft) {
+                      cascadeEventsList.push(idx);
+                    }
+                    if (curRight > prevRight) {
+                      widthReduceRightCount++;
+                      prevRight = curRight;
+                    }
+                  }
+                  alreadyFoundLeftArray = [];
+                  for (index = j - 1; index >= startingIndex; index--) {
+                    curLeft = view.events[index].left; curRight = view.events[index].left + view.events[index].width;
+                    curTop = view.events[index].top;
+                    curBottom = view.events[index].top + view.events[index].height;
+                    if (curLeft < prevLeft && alreadyFoundLeftArray.indexOf(curLeft) === -1) {
+                      widthReduceLeftCount++;
+                      alreadyFoundLeftArray.push(curLeft);
+                    } else if (curLeft > prevLeft && curTop <= prevTop && curBottom >= prevBottom) {
+                      view.events[j].width = view.events[index].left;
+                    }
+                  }
+                  widthReduceCount = widthReduceLeftCount + widthReduceRightCount;
+                  if (actualEventsInCascade > widthReduceCount) {
+                    effectiveWidth = view.events[j].width - view.events[j].left;
+                    view.events[j].width = effectiveWidth / widthReduceRightCount;
+                  } else {
+                    view.events[j].width = view.events[j].width / widthReduceCount;
+                  }
+                  newRight = view.events[j].left + view.events[j].width;
+                  for (l = 0; l < cascadeEventsList.length; l++) {
+                    view.events[cascadeEventsList[l]].left = newRight;
+                  }
+
                 }
                 maxEventsInCascadeCount = 0;
               }
             } else {
+              if (previousEventLeft < event.left) {
+                actualEventsInCascade++;
+                previousEventLeft = event.left;
+              }
               previousEventTop = currentEventTop;
               previousEventBottom = currentEventBottom;
               maxEventsInCascadeCount = maxEventsInCascadeCount + 1;
