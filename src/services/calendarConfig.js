@@ -12,7 +12,7 @@ angular
           day: 'd MMM',
           month: 'MMMM',
           weekDay: 'EEEE',
-          time: 'HH:mm',
+          time: 'hh:mm A',
           datetime: 'MMM d, h:mm a'
         },
         title: {
@@ -28,7 +28,7 @@ angular
           day: 'D MMM',
           month: 'MMMM',
           weekDay: 'dddd',
-          time: 'HH:mm',
+          time: 'hh:mm A',
           datetime: 'MMM D, h:mm a'
         },
         title: {
@@ -46,7 +46,7 @@ angular
       return this.allDateFormats[this.dateFormatter].title;
     },
     dateFormatter: 'angular',
-    showTimesOnWeekView: false,
+    showTimesOnWeekView: true,
     displayAllMonthEvents: false,
     i18nStrings: {
       weekNumber: 'Week {week}'
